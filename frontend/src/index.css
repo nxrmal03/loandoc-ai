@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #F5F4F2;
+    color: #1A1814;
+  }
+}
+
+@layer utilities {
+  /* Refined scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: #D4CCFF;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #8B7FE8; }
+
+  /* Smooth transitions on interactive elements */
+  .transition-smooth {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Prose reset for chat markdown */
+.prose p { margin: 0 0 0.5em; }
+.prose p:last-child { margin-bottom: 0; }
+.prose ul { margin: 0.25em 0 0.5em 1em; list-style: disc; }
+.prose ol { margin: 0.25em 0 0.5em 1em; list-style: decimal; }
+.prose li { margin: 0.15em 0; }
+.prose strong { font-weight: 600; color: #2D1A7A; }
+.prose code {
+  font-size: 0.85em;
+  background: #F0ECFF;
+  color: #6B4CE6;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
