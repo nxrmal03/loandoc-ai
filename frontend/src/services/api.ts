@@ -4,7 +4,9 @@ import type {
   UploadResponse,
 } from '../types'
 
-const BASE = '/api'
+// In dev: Vite proxies /api → localhost:8000
+// In production: VITE_API_URL=https://your-backend.onrender.com
+const BASE = (import.meta.env.VITE_API_URL ?? '') + '/api'
 
 async function request<T>(
   path: string,

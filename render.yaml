@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: loandoc-ai-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install --prefer-binary -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false                        # set manually in Render dashboard
+      - key: CORS_ORIGINS
+        sync: false                        # set to your Vercel URL after deploy
+      - key: CHROMA_DB_PATH
+        value: /var/data/chroma_db
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+      - key: PRIMARY_LLM
+        value: models/gemini-2.5-flash
+      - key: FALLBACK_LLM
+        value: models/gemini-2.0-flash-lite
+      - key: EMBEDDING_MODEL
+        value: models/gemini-embedding-001
+
+    disk:
+      name: loandoc-data
+      mountPath: /var/data
+      sizeGB: 1
